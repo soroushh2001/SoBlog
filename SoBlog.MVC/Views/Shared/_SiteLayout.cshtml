@@ -1,0 +1,56 @@
+﻿
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+	<title>بلاگ سو | @ViewData["Title"]</title>
+
+	<!-- Meta Tags -->
+	<partial name="_MetaTagsPartial" />
+
+	<!-- Styles -->
+	<partial name="_StylesPartial" />
+	
+</head>
+
+<body>
+<!-- Preloader START -->
+	<div class="preloader">
+		<div class="loader">
+			<div class="sh1"></div>
+			<div class="sh2"></div>
+		</div>
+	</div>
+<!-- Preloader END -->
+
+<!-- =======================
+Header START -->
+@await RenderSectionAsync("SiteHeader", true)
+<!-- =======================
+Header END -->
+
+<!-- **************** MAIN CONTENT START **************** -->
+<main>
+
+	@RenderBody()
+
+</main>
+<!-- **************** MAIN CONTENT END **************** -->
+
+<!-- =======================
+Footer START -->
+@await Component.InvokeAsync("SiteFooter")
+<!-- =======================
+Footer END -->
+
+<!-- Back to top -->
+<div class="back-top"><i class="bi bi-arrow-up-short"></i></div>
+
+<!-- =======================
+JS libraries, plugins and custom scripts -->
+
+	<partial name="_ScriptsPartial" />
+
+</body>
+
+</html>
