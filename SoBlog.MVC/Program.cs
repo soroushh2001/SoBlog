@@ -1,7 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using SoBlog.Infra.Data.Context;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+//Database Config
+var connection = builder.Configuration.GetConnectionString("SoBlogConnection");
+builder.Services.AddDbContext<SoBlogDbContext>(options => options.UseSqlServer(connection));
 
 var app = builder.Build();
 

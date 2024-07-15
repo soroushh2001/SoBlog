@@ -22,5 +22,8 @@ namespace SoBlog.Domain.Entities.Blog
         public long UserId { get; set; }
         [ForeignKey("UserId")]
         public User? User { get; set; }
+
+        public bool IsAccepted {  get; set; }
+
     }
 }
