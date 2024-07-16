@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SoBlog.Domain.Entities.Common
 {
-    public class BaseEntity
+    public abstract class BaseEntity
     {
         [Key]
         public long Id { get; set; }

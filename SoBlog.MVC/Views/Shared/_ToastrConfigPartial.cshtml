@@ -1,0 +1,10 @@
+﻿@if (TempData["SuccessMessage"] != null)
+{
+    <script>
+        toastr.options.positionClass = "toast-bottom-right";
+        toastr.options.progressBar = true;
+        toastr.options.rtl = true;
+        toastr.success('@TempData["SuccessMessage"]');
+
+    </script>
+}

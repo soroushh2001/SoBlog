@@ -1,0 +1,59 @@
+﻿@using SoBlog.Domain.DTOs.Account
+@model RegisterUserDTO
+@{
+    ViewData["Title"] = "ثبت نام";
+}
+
+@section SiteHeader {}
+
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10 col-lg-8 col-xl-6 mx-auto">
+				<div class="bg-primary bg-opacity-10 rounded p-4 p-sm-5">
+					<h2>ثبت نام در سایت </h2>
+					<!-- Form START -->
+					<form method="post" class="mt-4">
+						<!-- Email -->
+						<div class="mb-3">
+							<label class="form-label" for="exampleInputEmail1">ایمیل</label>
+							<input type="email" class="form-control" asp-for="Email" aria-describedby="emailHelp" placeholder="ایمیل">
+							<span asp-validation-for="Email" class="text-danger"></span>
+						</div>
+						<!-- Password -->
+						<div class="mb-3">
+							<label class="form-label" for="exampleInputPassword1">کلمه عبور</label>
+							<input type="password" class="form-control" asp-for="Password" placeholder="*********">
+							<span asp-validation-for="Password" class="text-danger"></span>
+						</div>
+						<!-- Password -->
+						<div class="mb-3">
+							<label class="form-label" for="exampleInputPassword2">تکرار کلمه عبور</label>
+							<input type="password" class="form-control" asp-for="ConfirmPassword" placeholder="*********">
+							<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+						</div>
+
+						<!-- Button -->
+						<div class="row align-items-center">
+							<div class="col-sm-4">
+								<button type="submit" class="btn btn-success">ثبت نام</button>
+							</div>
+							<div class="col-sm-8 text-sm-end">
+								<span>آیا قبلا ثبت نام کرده اید؟ <a href="/login"><u>ورود</u></a></span>
+							</div>
+						</div>
+					</form>
+					<!-- Form END -->
+					<hr>
+		
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+@section Scripts
+{
+	<partial name="_ValidationPartial" />
+
+}

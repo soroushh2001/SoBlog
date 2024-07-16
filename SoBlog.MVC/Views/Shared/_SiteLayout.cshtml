@@ -50,6 +50,8 @@ Footer END -->
 JS libraries, plugins and custom scripts -->
 
 	<partial name="_ScriptsPartial" />
+	<partial name="_ToastrConfigPartial" />
+	@await RenderSectionAsync("Scripts", false);
 
 </body>
 

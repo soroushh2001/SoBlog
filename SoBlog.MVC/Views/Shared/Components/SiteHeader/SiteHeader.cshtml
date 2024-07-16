@@ -1,4 +1,7 @@
-﻿<header class="navbar-light navbar-sticky header-static">
+﻿@using SoBlog.Domain.Entities.Account
+@using SoBlog.MVC.SiteExtensions
+@model User
+<header class="navbar-light navbar-sticky header-static">
     <div class="navbar-top d-none d-lg-block small">
         <div class="container">
             <div class="d-md-flex justify-content-between align-items-center my-2">
@@ -13,9 +16,25 @@
                     <li class="nav-item">
                         <a class="nav-link" href="https://www.rtl-theme.com/blogzine-html-template/">خرید قالب</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="signin.html">ورود / ثبت نام</a>
-                    </li>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/"> @Model.GetUserDisplayName() عزیز خوش آمدید</a>
+                        </li>
+
+                    }
+                    else
+                    {
+
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/register"> ثبت نام</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">ورود </a>
+                        </li>
+                    }
+
                 </ul>
                 <!-- Top bar right -->
                 <div class="d-flex align-items-center">

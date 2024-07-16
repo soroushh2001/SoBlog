@@ -16,11 +16,12 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\content\" />
-    <Folder Include="wwwroot\common\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SoBlog.Domain\SoBlog.Domain.csproj" />
     <ProjectReference Include="..\SoBlog.Infra.Data\SoBlog.Infra.Data.csproj" />
+    <ProjectReference Include="..\SoBlog.Infra.IoC\SoBlog.Infra.IoC.csproj" />
   </ItemGroup>
 
 </Project>

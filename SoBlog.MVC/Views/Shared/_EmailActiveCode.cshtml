@@ -1,0 +1,15 @@
+﻿@using SoBlog.Domain.Entities.Account
+@model User
+@inject IConfiguration Configuration
+
+@{
+    var domain = Configuration.GetValue<string>("SiteSettings:Domain");
+}
+
+<div>
+    <p>
+        @Model.Email عزیز برای فعالسازی حساب کاربری خود بر روی لنیک زیر کلیک کنید.
+    </p>
+
+    <a href="@domain/activate-account/@Model.EmailActiveCode">فعالسازی حساب کاربری</a>
+</div>

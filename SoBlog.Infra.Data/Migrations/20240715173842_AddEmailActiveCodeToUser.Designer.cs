@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoBlog.Infra.Data.Context;
 
@@ -11,9 +12,11 @@ using SoBlog.Infra.Data.Context;
 namespace SoBlog.Infra.Data.Migrations
 {
     [DbContext(typeof(SoBlogDbContext))]
-    partial class SoBlogDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240715173842_AddEmailActiveCodeToUser")]
+    partial class AddEmailActiveCodeToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

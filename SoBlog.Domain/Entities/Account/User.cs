@@ -20,6 +20,10 @@ namespace SoBlog.Domain.Entities.Account
         [MaxLength(250)]
         public string Email { get; set; }
 
+        [Required]
+        [MaxLength(50)]
+        public string EmailActiveCode {  get; set; }
+
         public bool IsEmailConfirmed { get; set; }
 
         [Required]

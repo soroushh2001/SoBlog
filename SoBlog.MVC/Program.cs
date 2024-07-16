@@ -1,5 +1,8 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using SoBlog.Infra.Data.Context;
+using SoBlog.Infra.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +13,25 @@ builder.Services.AddControllersWithViews();
 //Database Config
 var connection = builder.Configuration.GetConnectionString("SoBlogConnection");
 builder.Services.AddDbContext<SoBlogDbContext>(options => options.UseSqlServer(connection));
+
+//IoC
+DependencyContainer.RegisterServices(builder.Services);
+
+//Auth
+builder.Services.AddAuthentication(options =>
+{
+	options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+	options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+	options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+	options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+}).AddCookie(options =>
+{
+	options.LoginPath = "/login";
+	options.LogoutPath = "/logout";
+	options.ExpireTimeSpan = TimeSpan.FromDays(30);
+});
+
+
 
 var app = builder.Build();
 
@@ -26,6 +48,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
