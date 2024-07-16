@@ -1,0 +1,74 @@
+﻿@using SoBlog.Domain.DTOs.Categories
+@model EditCategoryDTO
+@{
+    ViewData["Title"] = $"ویرایش دسته بندی {Model.DisplayTitle}";
+}
+
+@section SiteHeader {
+    @await Component.InvokeAsync("AdminHeader")
+}
+
+<section class="py-4">
+    <div class="container">
+        <div class="row pb-4">
+            <div class="col-12">
+                <!-- Title -->
+                <h1 class="mb-0 h3">ویرایش دسته بندی @Model.DisplayTitle</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <!-- Chart START -->
+                <div class="card border">
+                    <!-- Card body -->
+                    <div class="card-body">
+                        <!-- Form START -->
+                        <form method="post">
+                            <input hidden asp-for="Id" />
+                            <!-- Main form -->
+                            <div class="row">
+                                <div class="col-4">
+                                    <!-- Post name -->
+                                    <div class="mb-3">
+                                        <label asp-for="DisplayTitle" class="form-label"></label>
+                                        <input asp-for="DisplayTitle" type="text" class="form-control" placeholder="عنوان نمایشی ">
+                                        <span asp-validation-for="DisplayTitle" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <!-- Post name -->
+                                    <div class="mb-3">
+                                        <label asp-for="SystemTitle" class="form-label"></label>
+                                        <input asp-for="SystemTitle" type="text" class="form-control" placeholder="عنوان سیستمی ">
+                                        <span asp-validation-for="SystemTitle" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <!-- Post name -->
+                                    <div class="mb-3">
+                                        <label asp-for="Color" class="form-label"></label>
+                                        <input asp-for="Color" type="text" class="form-control" placeholder="رنگ ">
+                                        <span asp-validation-for="Color" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <!-- Create post button -->
+                                <div class="col-md-12 text-start">
+                                    <button class="btn btn-primary w-100" type="submit">ویرایش دسته بندی</button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- Form END -->
+                    </div>
+                </div>
+                <!-- Chart END -->
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts
+                                {
+    <partial name="_ValidationPartial" />
+
+}

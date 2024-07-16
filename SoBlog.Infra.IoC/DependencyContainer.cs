@@ -20,12 +20,14 @@ namespace SoBlog.Infra.IoC
 			#region Repositories
 
 			services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();  
 
 			#endregion
 
 			#region Services
 
 			services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<ICategoryService, CategoryService>();
 
             #endregion
 
