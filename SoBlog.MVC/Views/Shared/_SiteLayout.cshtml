@@ -10,6 +10,7 @@
 
 	<!-- Styles -->
 	<partial name="_StylesPartial" />
+	@await RenderSectionAsync("Styles", false)
 	
 </head>
 
@@ -51,7 +52,7 @@ JS libraries, plugins and custom scripts -->
 
 	<partial name="_ScriptsPartial" />
 	<partial name="_ToastrConfigPartial" />
-	@await RenderSectionAsync("Scripts", false);
+	@await RenderSectionAsync("Scripts", false)
 
 </body>
 

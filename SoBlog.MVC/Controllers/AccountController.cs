@@ -80,10 +80,17 @@ namespace SoBlog.MVC.Controllers
         #region Login
 
         [HttpGet("login")]
-		public IActionResult Login()
+		public IActionResult Login(string returnUrl = "")
 		{
-			return View();												
-		}
+            var result = new LoginUserDTO();
+
+            if (!string.IsNullOrEmpty(returnUrl))
+            {
+                result.ReturnUrl = returnUrl;
+            }
+
+            return View(result);
+        }
 
 		[HttpPost("login")]
 		public async Task<IActionResult> Login(LoginUserDTO login)
@@ -118,7 +125,11 @@ namespace SoBlog.MVC.Controllers
 
 						await HttpContext.SignInAsync(principal, properties);
 						TempData[SuccessMessage] = "خوش آمدید";
-						return Redirect("/");
+                        if (!string.IsNullOrEmpty(login.ReturnUrl))
+                        {
+                            return Redirect(login.ReturnUrl);
+                        }
+                        return Redirect("/");
 				}
 			}
 			return View(login);

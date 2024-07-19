@@ -4,7 +4,7 @@ namespace SoBlog.MVC.Areas.Admin.Controllers
 {
     public class HomeController : AdminBaseController
     {
-        [HttpGet("dashboard")]
+        [HttpGet("")]
         public IActionResult Index()
         {
             return View();

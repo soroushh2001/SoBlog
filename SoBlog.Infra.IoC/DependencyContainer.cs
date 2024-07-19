@@ -21,6 +21,8 @@ namespace SoBlog.Infra.IoC
 
 			services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();  
+            services.AddScoped<IPostRepository, PostRepository>();
+            services.AddScoped<ITagRepository, TagRepository>();
 
 			#endregion
 
@@ -28,7 +30,8 @@ namespace SoBlog.Infra.IoC
 
 			services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<ICategoryService, CategoryService>();
-
+            services.AddScoped<IPostService, PostService>();
+            services.AddScoped<ITagService, TagService>();  
             #endregion
 
             #region SiteSetting

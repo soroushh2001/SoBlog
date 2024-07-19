@@ -8,6 +8,7 @@ namespace SoBlog.Domain.Interfaces
 		Task<User?> GetUserByEmail(string email);
 		Task<User?> GetUserByEmailActiveCode(string emailActiveCode);
 		Task<User?> GetUserById(long id);
+		Task<string>GetUserFullNameById(long id);
 		Task AddUser(User  user);
 		void UpdateUser(User user);
 		Task SaveChanges();

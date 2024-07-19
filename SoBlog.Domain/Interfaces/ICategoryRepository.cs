@@ -11,6 +11,7 @@ namespace SoBlog.Domain.Interfaces
 	{
 		Task<IEnumerable<Category>> GetAllCategories();
 		Task<Category?> GetCategoryById(long id);
+		Task<string> GetCategoryNameById(long id);
 		Task AddCategory(Category category);
 		void UpdateCategory(Category category);
 		Task SaveChanges();

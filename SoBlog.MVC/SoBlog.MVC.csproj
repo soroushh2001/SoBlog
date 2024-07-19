@@ -7,15 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\common\customs\js\post.js" />
+    <Content Remove="wwwroot\common\customs\js\submit-paging.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.3" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\content\" />
+    <Folder Include="wwwroot\content\editor\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +35,15 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\common\customs\js\post.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\common\customs\js\post.js" />
+    <None Include="wwwroot\common\customs\js\submit-paging.js" />
   </ItemGroup>
 
 </Project>

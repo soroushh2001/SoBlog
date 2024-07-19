@@ -10,3 +10,35 @@
 <!-- Template Functions -->
 <script src="/site/js/functions.js"></script>
 <script src="/common/toastr/toastr.min.js"></script>
+
+<!-- Vendors -->
+<script src="/site/vendor/apexcharts/js/apexcharts.min.js"></script>
+<script src="/site/vendor/quill/js/quill.min.js"></script>
+
+<!-- TinyEditor Config -->
+<script src="/common/tinymce/tinymce.min.js"></script>
+<script src="https://cdn.tiny.cloud/1/somum970pkhl2sbvoiml4p6bu4ktgpqga2rejak8wics9f5i/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
+<!-- Select2 Config -->
+<script src="/common/select2/js/select2.full.min.js"></script>
+<script src="/common/select2/js/i18n/fa.min.js"></script>
+
+<!-- waitme Config -->
+<script src="/common/waitme/waitMe.min.js"> </script>
+
+<!-- Sweet-Alert Config -->
+<script src="/common/sweetalert2/sweetalert2.all.min.js"> </script>
+
+<script src="/common/customs/js/global.js"> </script>
+
+<script>
+	document.querySelector(".upload-button").addEventListener("click", () => {
+		//clicks on the file input
+		document.querySelector(".hidden-upload").click();
+	});
+	//adds event listener on the hidden file input to listen for any changes
+	document.querySelector(".hidden-upload").addEventListener("change", (event) => {
+		//gets the file name
+		document.querySelector(".upload-name").value = event.target.files[0].name;
+	});
+</script>

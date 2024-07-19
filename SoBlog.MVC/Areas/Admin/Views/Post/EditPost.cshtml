@@ -1,0 +1,200 @@
+﻿@using SoBlog.Application.Statics
+@model SoBlog.Domain.DTOs.Posts.EditPostDTO
+@{
+    ViewData["Title"] = "EditPost";
+}
+
+
+@section SiteHeader {
+    @await Component.InvokeAsync("AdminHeader")
+
+}
+
+@section Styles {
+    <style>
+        .select2-selection {
+            overflow: hidden;
+        }
+
+        .select2-selection__rendered {
+            white-space: normal;
+            word-break: break-all;
+        }
+    </style>
+}
+
+
+<section class="py-4">
+    <div class="container">
+        <div class="row pb-4">
+            <div class="col-12">
+                <!-- Title -->
+                <h1 class="mb-0 h3">ایجاد خبر جدید</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <!-- Chart START -->
+                <div class="card border">
+                    <!-- Card body -->
+                    <div class="card-body">
+                        <!-- Form START -->
+                        
+                        <form asp-area="Admin" asp-controller="Post" asp-action="EditPost" method="post" enctype="multipart/form-data">
+                            <div asp-validation-summary="All">  </div>
+                            <input type="hidden" asp-for="Id" />
+                            <input type="hidden" asp-for="ImageName" />
+                            <input type="hidden" asp-for="AuthorId" />
+                            <input type="hidden" name="referer" value="@ViewBag.referer" />
+                            <!-- Main form -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- Post name -->
+                                    <div class="mb-3">
+                                        <label class="form-label">عنوان</label>
+                                        <input asp-for="Title" type="text" class="form-control" placeholder="عنوان خبر">
+                                        <span asp-validation-for="Title" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+
+                                <!-- Main toolbar -->
+                                <div class="col-md-12">
+                                    <!-- Subject -->
+                                    <div class="mb-3">
+                                        <label class="form-label">متن خبر</label>
+                                        <textarea asp-for="Text"></textarea>
+                                        <span asp-validation-for="Text" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+                                <div class="col-4 col-md-2">
+                                    <div class="position-relative">
+                                        <img class="rounded" src="@(PathTools.PostImagePath + Model.ImageName)" ImageFile="1">
+                                    </div>
+                                </div>
+                                <div class="col-8">
+                                    <div class="mb-3">
+                                        <!-- Image -->
+                                        <div class="position-relative">
+                                            <h6 class="my-2">آپلود تصویر شاخص<a href="#!" class="text-primary"> آپلود از کامپیوتر</a></h6>
+                                            <label class="w-100" style="cursor:pointer;">
+                                                <div class="input-group flex-row-reverse">
+                                                    <input type="text" class="form-control upload-name">
+                                                    <span class="btn btn-custom cursor-pointer upload-button">آپلود فایل</span>
+                                                </div>
+                                                <input ImageInput="1" class="form-control stretched-link d-none hidden-upload" type="file" name="image" accept="image/gif, image/jpeg, image/png">
+                                            </label>
+
+                                        </div>
+                                        <p class="small mb-0 mt-2"><b>نکته:</b> فرمت های مجاز: JPG، JPEG و PNG و ابعاد پیشنهادی ما 600px * 450px است. تصاویر بزرگتر به اندازه 4:3 برش داده می شود تا با تصاویر کوچک/پیش نمایش ما مطابقت داشته باشد.</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 w-100">
+                                    <!-- Tags -->
+                                    <div class="mb-3">
+                                        <label class="form-label">برچسب</label>
+                                        <select asp-for="Tags" asp-items="@ViewData["Tags"] as List<SelectListItem>" class="select-tags form-control" multiple="multiple"></select>
+                                        <span asp-validation-for="Tags" class="text-danger"></span>
+
+                                        </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <!-- Message -->
+                                    <div class="mb-3">
+                                        <label class="form-label">دسته بندی</label>
+                                        <select asp-for="CategoryId" asp-items="@ViewData["Categories"] as List<SelectListItem>" class="form-select" aria-label="Default select example">
+                                            <option selected disabled>لطفاً دسته بندی را انتخاب کنید</option>
+                                        </select>
+                                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <!-- Post name -->
+                                    <div class="mb-3">
+                                        <label class="form-label">زمان برای مطالعه</label>
+                                        <input asp-for="TimeToRead" class="form-control" placeholder="زمان برای مطالعه">
+                                        <span asp-validation-for="TimeToRead" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <!-- Post name -->
+                                    <div class="mb-3">
+                                        <label class="form-label">اسلاگ</label>
+                                        <input asp-for="Slug" class="form-control" placeholder="اسلاگ">
+                                        <span asp-validation-for="Slug" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" asp-for="IsPublished">
+                                        <label class="form-check-label" for="postCheck">
+                                            انتشار
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" asp-for="IsPinned">
+                                        <label class="form-check-label" for="postCheck">
+                                           سنجاق
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" asp-for="IsProposed">
+                                        <label class="form-check-label" for="postCheck">
+                                            پیشنهادی
+                                        </label>
+                                    </div>
+                                </div>
+                                <!-- Create post button -->
+                                <div class="col-md-12 text-start">
+                                    <button class="btn btn-primary w-100" type="submit">ایجاد خبر</button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- Form END -->
+                    </div>
+                </div>
+                <!-- Chart END -->
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+
+    <script src="~/common/customs/js/show-image.js"></script>
+
+    <partial name="_ValidationPartial"/>
+
+    <script>
+        $(document).ready(function () {
+            $(".select-tags").select2({
+                width: '100%',
+                tags: true,
+                tokenSeparators: [',']
+            });
+        })
+    </script>
+
+
+    <script>
+
+
+
+      tinymce.init({
+            selector: 'textarea',
+            language: 'fa',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount linkchecker',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+            images_upload_url: '/AddToServer',
+      });
+
+
+    </script>
+}

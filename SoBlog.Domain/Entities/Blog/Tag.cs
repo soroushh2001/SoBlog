@@ -8,17 +8,13 @@ using System.Threading.Tasks;
 
 namespace SoBlog.Domain.Entities.Blog
 {
-    public class Tag : BaseEntity
+    public class Tag: BaseEntity
     {
         [Required]
         [MaxLength(250)]
         public string DisplayTitle { get; set; }
 
-        [Required]
-        [MaxLength(250)]
-        public string SystemTitle { get; set; }
+        public ICollection<PostTag>? PostTags { get; set; }
 
-
-        public ICollection<PostTag> PostTags { get; set; }  
     }
 }

@@ -26,9 +26,17 @@ namespace SoBlog.Domain.Entities.Blog
         [Required]
         public string Text { get; set; }
 
+        [Required]
+        [MaxLength(50)]
+        public string ImageName { get; set; }                                                                           
+
         public bool IsPinned { get; set; }
 
         public bool IsProposed {  get; set; }
+
+        public bool IsPublished {  get; set; }
+        
+        public DateTime? PublishDate { get; set; }
 
         public long CategoryId { get; set; }
         [ForeignKey(nameof(CategoryId))]    
@@ -36,6 +44,6 @@ namespace SoBlog.Domain.Entities.Blog
 
 
         public ICollection<Comment>? Comments { get; set; }
-        public ICollection<PostTag>? PostTags { get; set; }
+        public ICollection<PostTag>? PostTags { get; set; }  
     }
 }

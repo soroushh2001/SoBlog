@@ -28,8 +28,14 @@ namespace SoBlog.Infra.Data.Repositories
 			return await _context.Categories.FindAsync(id);
 		}
 
+		public async Task<string> GetCategoryNameById(long id)
+		{
+			var category = await _context.Categories.FindAsync(id);
 
-		public async Task AddCategory(Category category)
+			return category.DisplayTitle;
+		}
+
+        public async Task AddCategory(Category category)
 		{
 			await _context.Categories.AddAsync(category);
 		}

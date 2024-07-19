@@ -39,6 +39,13 @@ namespace SoBlog.Infra.Data.Repositories
 			return await _context.Users.FindAsync(id);
 		}
 
+		public async Task<string> GetUserFullNameById(long id)
+		{
+			var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+
+			return user.FullName;
+		}
+
         public async Task AddUser(User user)
 		{
 			await _context.Users.AddAsync(user);
