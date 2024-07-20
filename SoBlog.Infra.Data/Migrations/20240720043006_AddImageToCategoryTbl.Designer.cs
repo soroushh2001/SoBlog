@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoBlog.Infra.Data.Context;
 
@@ -11,9 +12,11 @@ using SoBlog.Infra.Data.Context;
 namespace SoBlog.Infra.Data.Migrations
 {
     [DbContext(typeof(SoBlogDbContext))]
-    partial class SoBlogDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240720043006_AddImageToCategoryTbl")]
+    partial class AddImageToCategoryTbl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -125,13 +128,6 @@ namespace SoBlog.Infra.Data.Migrations
                         .HasColumnType("bigint");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("AuhtorJob")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("AuthorDescription")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AvatarName")
                         .IsRequired()

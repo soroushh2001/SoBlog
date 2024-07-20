@@ -13,5 +13,8 @@ namespace SoBlog.Application.Statics
         public static readonly string PostImageSreverPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/content/post-image/");
         public static readonly string PostImagePath = "/content/post-image/";
         public static readonly string UserAvatrPath = "/content/user/";
+        public static readonly string CategoryImageServerPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/content/category-image/");
+        public static readonly string CategoryImagePath = "/content/category-image/";
+
     }
 }

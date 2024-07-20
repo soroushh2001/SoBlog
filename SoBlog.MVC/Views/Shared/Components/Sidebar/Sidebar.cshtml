@@ -1,0 +1,89 @@
+﻿@using SoBlog.Application.Statics
+@using SoBlog.Domain.DTOs.Categories
+@model IEnumerable<ShowCategoryInIndex>
+
+@if (Model.Any() && Model != null)
+{
+    <div class="col-lg-3 mt-5 mt-lg-0">
+        <div data-sticky data-margin-top="80" data-sticky-for="767">
+
+            <!-- Trending topics widget START -->
+            <div>
+                <h4 class="mt-4 mb-3">دسته بندی ها</h4>
+                <!-- Category item -->
+                @foreach (var cat in Model)
+                {
+                    <div class="text-center mb-3 card-bg-scale position-relative overflow-hidden rounded bg-dark-overlay-4 " style="background-image:url(@(PathTools.CategoryImagePath + cat.Image)); background-position: center left; background-size: cover;">
+                        <div class="p-3">
+                            <a href="#" class="stretched-link btn-link text-white h5">@cat.Name</a>
+                        </div>
+                    </div>
+
+                }
+                <!-- View All Category button -->
+                <div class="text-center mt-3">
+                    <a href="#" class="text-body text-primary-hover"><u>مشاهده همه</u></a>
+                </div>
+            </div>
+            <!-- Trending topics widget END -->
+
+            <div class="row">
+                <!-- Recent post widget START -->
+                <div class="col-12 col-sm-6 col-lg-12">
+                    <h4 class="mt-4 mb-3">پربحث ها</h4>
+                    <!-- Recent post item -->
+                    <div class="card mb-3">
+                        <div class="row g-3">
+                            <div class="col-4">
+                                <img class="rounded" src="/site/images/blog/4by3/thumb/01.jpg" alt="">
+                            </div>
+                            <div class="col-8">
+                                <h6><a href="post-single-2.html" class="btn-link stretched-link text-reset">خرید و فروش ارز در کانال 37 هزار تومانی</a></h6>
+                                <div class="small mt-1">17 بهمن، 1400</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Recent post item -->
+                    <div class="card mb-3">
+                        <div class="row g-3">
+                            <div class="col-4">
+                                <img class="rounded" src="/site/images/blog/4by3/thumb/02.jpg" alt="">
+                            </div>
+                            <div class="col-8">
+                                <h6><a href="post-single-2.html" class="btn-link stretched-link text-reset">کاهش 192 هزار میلیارد تومانی بدهی دولت</a></h6>
+                                <div class="small mt-1">4 مهر، 1400</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Recent post item -->
+                    <div class="card mb-3">
+                        <div class="row g-3">
+                            <div class="col-4">
+                                <img class="rounded" src="/site/images/blog/4by3/thumb/03.jpg" alt="">
+                            </div>
+                            <div class="col-8">
+                                <h6><a href="post-single-2.html" class="btn-link stretched-link text-reset">ساخت مسکن موتور محرک کاهش تورم</a></h6>
+                                <div class="small mt-1">30 تیر، 1400</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Recent post item -->
+                    <div class="card mb-3">
+                        <div class="row g-3">
+                            <div class="col-4">
+                                <img class="rounded" src="/site/images/blog/4by3/thumb/04.jpg" alt="">
+                            </div>
+                            <div class="col-8">
+                                <h6><a href="post-single-2.html" class="btn-link stretched-link text-reset">آشنایی با کلید موفقیت نهضت ملی مسکن‌</a></h6>
+                                <div class="small mt-1">29 دی 1400</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Recent post widget END -->
+
+            </div>
+        </div>
+    </div>
+}
+

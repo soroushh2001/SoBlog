@@ -22,7 +22,7 @@
                     <!-- Card body -->
                     <div class="card-body">
                         <!-- Form START -->
-                        <form method="post">
+                        <form method="post" enctype="multipart/form-data">
                             <!-- Main form -->
                             <div class="row">
                                 <div class="col-4">
@@ -49,8 +49,22 @@
                                         <span asp-validation-for="Color" class="text-danger"></span>
                                     </div>
                                 </div>
+
+   
+                                <div class="col-4 col-md-2">
+                                    <div class="position-relative">
+                                        <img class="rounded" ImageFile="1">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">عکس</label>
+                                        <input ImageInput="1" name="image" type="file" class="form-control" placeholder="عکس ">
+                                    </div>
+                                </div>
+
                                 <!-- Create post button -->
-                                <div class="col-md-12 text-start">
+                                <div class="col-md-12 text-start mt-2">
                                     <button class="btn btn-primary w-100" type="submit">ایجاد دسته بندی</button>
                                 </div>
                             </div>
@@ -66,7 +80,8 @@
 
 
 @section Scripts
-                                {
+{
+    <script src="~/common/customs/js/show-image.js"></script>
     <partial name="_ValidationPartial" />
 
 }

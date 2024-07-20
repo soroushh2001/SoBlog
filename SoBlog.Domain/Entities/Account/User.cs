@@ -34,6 +34,11 @@ namespace SoBlog.Domain.Entities.Account
         [MaxLength(50)]
         public string AvatarName { get; set; }
 
+        [MaxLength(250)]
+        public string? AuhtorJob {  get; set; }
+        
+        public string? AuthorDescription { get; set; }
+
         public long RoleId { get; set; }
         [ForeignKey(nameof(RoleId))]
         public Role? Role { get; set; }

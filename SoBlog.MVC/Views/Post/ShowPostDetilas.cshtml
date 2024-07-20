@@ -1,0 +1,236 @@
+﻿@using SoBlog.Application.Statics
+@using SoBlog.Domain.DTOs.Posts
+@using SoBlog.Application.Extensions
+@model ShowPostDetialDTO
+@{
+    ViewData["Title"] = $"{Model.Title}";
+}
+
+@section SiteHeader{
+
+}
+
+<section class="pt-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card bg-dark-overlay-5 overflow-hidden card-bg-scale h-400 text-center" style="background-image:url(@((PathTools.PostImagePath + Model.ImageName))); background-position: center left; background-size: cover;">
+                    <!-- Card Image overlay -->
+                    <div class="card-img-overlay d-flex align-items-center p-3 p-sm-4">
+                        <div class="w-100 my-auto">
+                            <!-- Card category -->
+                            <a href="#" class="badge text-bg-danger mb-2"><i class="fas fa-circle me-2 small fw-bold"></i>@Model.CategoryTitle</a>
+                            <!-- Card title -->
+                            <h2 class="text-white display-5">@Model.Title</h2>
+                            <!-- Card info -->
+                            <ul class="nav nav-divider text-white-force align-items-center justify-content-center">
+                                <li class="nav-item">
+                                    <div class="nav-link">
+                                        <div class="d-flex align-items-center text-white position-relative">
+                                            <div class="avatar avatar-sm">
+                                                <img class="avatar-img rounded-circle" src="@((PathTools.UserAvatrPath + Model.AuthorAvatar))" alt="avatar">
+                                            </div>
+                                            <span class="ms-3">با <a href="#" class="stretched-link text-reset btn-link">@Model.AuthorName</a></span>
+                                        </div>
+                                    </div>
+                                </li>
+								<li class="nav-item">@Model.PublishedDate?.ToStringShamsiDate()</li>
+                                <li class="nav-item">@Model.TimeToRead دقیقه زمان مطالعه</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pt-0">
+	<div class="container position-relative" data-sticky-container="">
+		<div class="row">
+			<!-- Main Content START -->
+			<div class="col-lg-9 mb-5">
+			@Html.Raw(Model.Text)
+				<!-- Author info START -->
+				<div class="d-flex p-2 p-md-4 my-3 bg-primary bg-opacity-10 rounded">
+					<!-- Avatar -->
+					<a href="#">
+						<div class="avatar avatar-xxl me-2 me-md-4">
+							<img class="avatar-img rounded-circle" src="@((PathTools.UserAvatrPath + Model.AuthorAvatar))" alt="avatar">
+						</div>
+					</a>
+					<!-- Info -->
+					<div>
+						<div class="d-sm-flex align-items-center justify-content-between">
+							<div>
+								<h4 class="m-0"><a href="#" class="text-reset">@Model.AuthorName</a></h4>
+								<small>@Model.AuthorJob</small>
+							</div>
+							<a href="#" class="btn btn-xs btn-primary-soft">مشاهده اخبار</a>
+						</div>
+						<p class="my-2">@Model.AuthorDescription</p>
+						<!-- Social icons -->
+						<ul class="nav">
+							<li class="nav-item">
+								<a class="nav-link ps-0 pe-2 fs-5" href="#"><i class="fab fa-facebook-square"></i></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link px-2 fs-5" href="#"><i class="fab fa-twitter-square"></i></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link px-2 fs-5" href="#"><i class="fab fa-linkedin"></i></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- Author info END -->
+				<!-- Comments START -->
+				<div class="mt-5">
+					<h3>5 دیدگاه</h3>
+					<!-- Comment level 1-->
+					<div class="my-4 d-flex">
+						<img class="avatar avatar-md rounded-circle float-start me-3" src="assets/images/avatar/01.jpg" alt="avatar">
+						<div>
+							<div class="mb-2">
+								<h5 class="m-0">شادی اسدی</h5>
+								<span class="me-3 small">21 خرداد، 1400 در 3:00 بعد از ظهر </span>
+								<a href="#" class="text-body fw-normal">پاسخ</a>
+							</div>
+							<p>سایهٔ نیرومندی و ثروت خیال می‌ کنند که می‌توانند در خارج از وطن خود زندگی نمایند و خوشبخت و سرافراز باشند ولی به زودی می‌ فهمند که اشتباه کرده‌ اند و عظمت هر ملتی بر روی خرابه‌ های وطن خودش می‌باشد و بس!</p>
+						</div>
+					</div>
+					<!-- Comment children level 2 -->
+					<div class="my-4 d-flex ps-2 ps-md-3">
+						<img class="avatar avatar-md rounded-circle float-start me-3" src="assets/images/avatar/02.jpg" alt="avatar">
+						<div>
+							<div class="mb-2">
+								<h5 class="m-0">علی قنبرزاده</h5>
+								<span class="me-3 small">21 خرداد، 1400 در 3:00 بعد از ظهر </span>
+								<a href="#" class="text-body fw-normal">پاسخ</a>
+							</div>
+							<p>وقتی ثروت‌ های بزرگ به دست برخی مردم می‌افتد در پرتو آن نیرومند می‌شوند و در سایهٔ نیرومندی و ثروت خیال می‌ کنند که می‌توانند در خارج از وطن خود زندگی نمایند و خوشبخت و سرافراز باشند.</p>
+						</div>
+					</div>
+					<!-- Comment children level 3 -->
+					<div class="my-4 d-flex ps-3 ps-md-5">
+						<img class="avatar avatar-md rounded-circle float-start me-3" src="assets/images/avatar/01.jpg" alt="avatar">
+						<div>
+							<div class="mb-2">
+								<h5 class="m-0">مونا شاه حسینی</h5>
+								<span class="me-3 small">21 خرداد، 1400 در 3:00 بعد از ظهر</span>
+								<a href="#" class="text-body fw-normal">پاسخ</a>
+							</div>
+							<p>در نهایت این مرگ است که باید پیروز شود، زیرا از هنگام تولد بخشی از سرنوشت ما شده و فقط مدت کوتاهی پیش از بلعیدن طعمه اش، با آن بازی می کند.</p>
+						</div>
+					</div>
+					<!-- Comment level 2 -->
+					<div class="my-4 d-flex ps-2 ps-md-3">
+						<img class="avatar avatar-md rounded-circle float-start me-3" src="assets/images/avatar/03.jpg" alt="avatar">
+						<div>
+							<div class="mb-2">
+								<h5 class="m-0">مهرداد نوری</h5>
+								<span class="me-3 small">21 خرداد، 1400 در 3:00 بعد از ظهر</span>
+								<a href="#" class="text-body fw-normal">پاسخ</a>
+							</div>
+							<p>همان‌ طور که تا آنجا که ممکن است طولانی‌ تر در یک حباب صابون می‌ دمیم تا بزرگتر شود!</p>
+						</div>
+					</div>
+					<!-- Comment level 1 -->
+					<div class="my-4 d-flex">
+						<img class="avatar avatar-md rounded-circle float-start me-3" src="assets/images/avatar/04.jpg" alt="avatar">
+						<div>
+							<div class="mb-2">
+								<h5 class="m-0">رضا کریمی</h5>
+								<span class="me-3 small">21 خرداد، 1400 در 3:00 بعد از ظهر </span>
+								<a href="#" class="text-body fw-normal">پاسخ</a>
+							</div>
+							<p>ما تا آنجا که ممکن است، با علاقه فراوان و دلواپسی زیاد به زندگی ادامه می دهیم، همان‌ طور که تا آنجا که ممکن است طولانی‌ تر در یک حباب صابون می‌ دمیم تا بزرگتر شود، گر چه با قطعیتی تمام می‌ دانیم که خواهد ترکید.</p>
+						</div>
+					</div>
+
+				</div>
+				<!-- Comments END -->
+				<!-- Reply START -->
+				<div>
+					<h3>ثبت دیدگاه</h3>
+					<small>آدرس ایمیل شما منتشر نخواهد شد. فیلدهای الزامی علامت گذاری شده اند *</small>
+					<form class="row g-3 mt-2">
+						<div class="col-md-6">
+							<label class="form-label">نام *</label>
+							<input type="text" class="form-control" aria-label="First name">
+						</div>
+						<div class="col-md-6">
+							<label class="form-label">ایمیل *</label>
+							<input type="email" class="form-control">
+						</div>
+						<!-- custom checkbox -->
+						<div class="col-md-12">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+								<label class="form-check-label" for="flexCheckDefault">برای دفعه بعد که نظر دادم نام و ایمیل من را در این مرورگر ذخیره شود.</label>
+							</div>
+						</div>
+						<div class="col-12">
+							<label class="form-label">متن دیدگاه *</label>
+							<textarea class="form-control" rows="3"></textarea>
+						</div>
+						<div class="col-12">
+							<button type="submit" class="btn btn-primary">ثبت</button>
+						</div>
+					</form>
+				</div>
+				<!-- Reply END -->
+			</div>
+			<!-- Main Content END -->
+			<!-- Right sidebar START -->
+			<div class="col-lg-3">
+				<div data-sticky="" data-margin-top="80" data-sticky-for="991" style="">
+					<!-- Categories -->
+					<div class="row g-2">
+						<h5>دسته بندی ها</h5>
+						<div class="d-flex justify-content-between align-items-center bg-warning bg-opacity-15 rounded p-2 position-relative">
+							<h6 class="m-0 text-warning">رسانه و هنر</h6>
+							<a href="#" class="badge bg-warning text-dark stretched-link">09</a>
+						</div>
+						<div class="d-flex justify-content-between align-items-center bg-info bg-opacity-10 rounded p-2 position-relative">
+							<h6 class="m-0 text-info">گردشگری</h6>
+							<a href="#" class="badge bg-info stretched-link">25</a>
+						</div>
+						<div class="d-flex justify-content-between align-items-center bg-danger bg-opacity-10 rounded p-2 position-relative">
+							<h6 class="m-0 text-danger">سیاست</h6>
+							<a href="#" class="badge bg-danger stretched-link">75</a>
+						</div>
+						<div class="d-flex justify-content-between align-items-center bg-primary bg-opacity-10 rounded p-2 position-relative">
+							<h6 class="m-0 text-primary">اقتصاد</h6>
+							<a href="#" class="badge bg-primary stretched-link">19</a>
+						</div>
+						<div class="d-flex justify-content-between align-items-center bg-success bg-opacity-10 rounded p-2 position-relative">
+							<h6 class="m-0 text-success">بین الملل</h6>
+							<a href="#" class="badge bg-success stretched-link">35</a>
+						</div>
+					</div>
+
+					<!-- Newsletter START -->
+					<div class="bg-light p-4 mt-4 rounded-3 text-center">
+						<h4>عضویت در خبرنامه</h4>
+						<form>
+							<div class="mb-3">
+								<input type="email" class="form-control" placeholder="ایمیل">
+							</div>
+							<button type="submit" class="btn btn-primary">عضویت</button>
+							<div class="form-text">ربات نیستم</div>
+						</form>
+					</div>
+					<!-- Newsletter END -->
+					<!-- Advertisement -->
+					<div class="mt-4">
+						<a href="#" class="d-block card-img-flash">
+							<img src="assets/images/adv.png" alt="">
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- Right sidebar END -->
+		</div>
+	</div>
+</section>

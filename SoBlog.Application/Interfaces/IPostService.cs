@@ -17,5 +17,7 @@ namespace SoBlog.Application.Interfaces
         Task<FilterPostsForAdminDTO> FilterPostsForAdmin(FilterPostsForAdminDTO filterPostsForAdmin);   
         Task<bool> UnPublishedPost(long postId);
         Task<bool> PublishedPost(long postId);
+		Task<IEnumerable<ShowAllPostInIndexDTO>> FillShowAllPostInIndexDTO();
+        Task<ShowPostDetialDTO?> FillShowPostDetialDTOBySlug(string slug);
     }
 }

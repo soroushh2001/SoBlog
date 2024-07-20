@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using SoBlog.Application.Extensions;
 using SoBlog.Application.Interfaces;
+using SoBlog.Application.Statics;
 using SoBlog.Domain.DTOs.Categories;
 
 namespace SoBlog.MVC.Areas.Admin.Controllers
@@ -25,11 +27,20 @@ namespace SoBlog.MVC.Areas.Admin.Controllers
 			return View();
 		}
 		[HttpPost("categories/add")]
-		public async Task<IActionResult> AddCategory(AddCategoryDTO addCategory)
+		public async Task<IActionResult> AddCategory(AddCategoryDTO addCategory, IFormFile image)
 		{
 			if (ModelState.IsValid)
 			{
-				await _categoryService.CreateCategory(addCategory);
+				if (image == null) 
+				{ 
+					TempData[ErrorMessage] = "لطفا عکس را وارد کنید";
+					return View(addCategory); 
+				}
+
+				var imageName = Guid.NewGuid().ToString("N") + Path.GetExtension(image.FileName);
+
+				image.UploadFile(imageName, PathTools.CategoryImageServerPath);
+				await _categoryService.CreateCategory(addCategory,imageName);
 				TempData[SuccessMessage] = "دسته بندی جدید اضافه شد";
 				return RedirectToAction("Index");
 			}
@@ -47,11 +58,27 @@ namespace SoBlog.MVC.Areas.Admin.Controllers
 		}
 
 		[HttpPost("categories/edit/{id}")]
-		public async Task<IActionResult> EditCategory(EditCategoryDTO edit)
+		public async Task<IActionResult> EditCategory(EditCategoryDTO edit, IFormFile? image)
 		{
 			
 			if (ModelState.IsValid)
 			{
+				if (image != null)
+				{
+					var oldImage = PathTools.CategoryImageServerPath + edit.ImageName;
+
+                    if (System.IO.File.Exists(oldImage))
+                    {
+                        System.IO.File.Delete(oldImage);
+                    }
+
+                    string imageName = Guid.NewGuid().ToString("N") + Path.GetExtension(image.FileName);
+                    image.UploadFile(imageName, PathTools.CategoryImageServerPath);
+					await _categoryService.EditCategory(edit, imageName);
+                    TempData[SuccessMessage] = "دسته بندی ویرایش شد";
+                    return RedirectToAction("Index");
+                }
+
 				var result = await _categoryService.EditCategory(edit);
 				if (result)
 				{

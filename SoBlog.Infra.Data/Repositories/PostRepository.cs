@@ -2,15 +2,10 @@
 using SoBlog.Domain.Entities.Blog;
 using SoBlog.Domain.Interfaces;
 using SoBlog.Infra.Data.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SoBlog.Infra.Data.Repositories
 {
-    public class PostRepository : IPostRepository
+	public class PostRepository : IPostRepository
     {
         private readonly SoBlogDbContext _context;
         public PostRepository(SoBlogDbContext context)
@@ -23,12 +18,22 @@ namespace SoBlog.Infra.Data.Repositories
             return _context.Posts.Include(p => p.Category).Include(p=> p.Author).AsQueryable();
         }
 
-        public async Task<Post?> GetPostById(long id)
+        public async Task<IEnumerable<Post>?> GetAllPinnedPost()
+        {
+            return await _context.Posts.Where(p => p.IsPinned).Include(p => p.Category).Include(p=> p.Author).ToListAsync();
+        }
+
+		public async Task<Post?> GetPostById(long id)
         {
             return await _context.Posts.SingleOrDefaultAsync(u => u.Id == id);
         }
 
-        public async Task AddPost(Post post)
+        public async Task<Post?> GetPostBySlug(string slug)
+        {
+            return await _context.Posts.Include(p => p.Author).Include(p => p.Category).SingleOrDefaultAsync(p => p.Slug == slug);
+        }
+
+		public async Task AddPost(Post post)
         {
             await _context.Posts.AddAsync(post);
         }

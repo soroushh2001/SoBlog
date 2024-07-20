@@ -10,7 +10,9 @@ namespace SoBlog.Domain.Interfaces
     public interface IPostRepository
     {
         Task<IQueryable<Post>> GetAllPosts();
-        Task<Post?> GetPostById(long id);
+		Task<IEnumerable<Post>?> GetAllPinnedPost();
+		Task<Post?> GetPostById(long id);
+        Task<Post?> GetPostBySlug(string slug);
         Task AddPost(Post post);
         void UpdatePost(Post post);
         Task SaveChanges();

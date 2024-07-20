@@ -25,5 +25,8 @@ namespace SoBlog.Domain.DTOs.Categories
 		[Required(ErrorMessage = "لطفا {0} را وارد کیند")]
 		[MaxLength(50)]
 		public string Color { get; set; }
+
+		public string ImageName{  get; set; }
+
 	}
 }

@@ -32,7 +32,7 @@ namespace SoBlog.Application.Services
 
         public async Task<bool> CreatePost(AddPostDTO add, long authorId, string image)
         {
-
+            add.Slug = add.Slug.ToString().Replace(" ", "-");
             var newPost = new Post
             {
                 AuthorId = authorId,
@@ -103,6 +103,8 @@ namespace SoBlog.Application.Services
 
         public async Task<bool> EditPost(EditPostDTO editPost, string? NewimageName = null)
         {
+            editPost.Text = editPost.Text.ToString().Replace(" ","-");
+
             var getPost = await _postRepository.GetPostById(editPost.Id);
 
             if (getPost == null) return false;
@@ -232,6 +234,45 @@ namespace SoBlog.Application.Services
             return true;
         }
 
+        public async Task<IEnumerable<ShowAllPostInIndexDTO>> FillShowAllPostInIndexDTO()
+        {
+            var getAllPinned = await _postRepository.GetAllPosts();
+            return getAllPinned.Select(g => new ShowAllPostInIndexDTO
+            {
+                AuthorName = g.Author.FullName,
+                Categroy = g.Category.DisplayTitle,
+                CategroyColor = g.Category.Color,
+                Id = g.Id,
+                PublishDate = g.PublishDate,
+                Title = g.Title,
+                ImageUrl = g.ImageName,
+                IsPublished = g.IsPublished,
+                IsPinned = g.IsPinned,
+                AuthorAvatar = g.Author.AvatarName,
+                IsProposed = g.IsProposed,
+                Slug = g.Slug,
+                CategorySystemName = g.Category.SystemTitle
+			}).ToList();
+        }
+
+        public async Task<ShowPostDetialDTO?> FillShowPostDetialDTOBySlug(string slug)
+        {
+            var post = await _postRepository.GetPostBySlug(slug);
+            return new ShowPostDetialDTO
+            {
+                AuthorAvatar = post.Author.AvatarName,
+                Title = post.Title,
+                AuthorName = post.Author.FullName,
+                Id = post.Id,
+                PublishedDate = post.PublishDate,
+                Text = post.Text,
+                TimeToRead = post.TimeToRead,
+                ImageName = post.ImageName,
+                CategoryTitle = post.Category.DisplayTitle,
+                AuthorDescription = post.Author.AuthorDescription,
+                AuthorJob = post.Author.AuhtorJob
+            };
+        }
 
 	}
 }

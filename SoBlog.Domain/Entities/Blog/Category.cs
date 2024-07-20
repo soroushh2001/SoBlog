@@ -17,6 +17,10 @@ namespace SoBlog.Domain.Entities.Blog
         [MaxLength(50)]
         public string Color { get; set; }
 
+        [Required]
+        [MaxLength(50)]
+        public string Image {  get; set; }
+
         public ICollection<Post>? Posts { get; set; }    
     }
 }
